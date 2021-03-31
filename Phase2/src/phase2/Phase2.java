@@ -2,7 +2,9 @@
 package phase2;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 public class Phase2 {
 
@@ -26,7 +28,7 @@ public class Phase2 {
         for(int i=0; i<n; i++)
             for (int j=i+1; j<n && edges<n; j++, edges++){
                 
-                int randomNum=(int)(Math.random()*100)+1; //a random weight from between 1 and 100
+                int randomNum=(int)(Math.random()*100)+1; //a random weight between 1 and 100
                 
                 //add edge from i to j, then from j to i
                 graph.get(i).add(new Integer [2]);
@@ -45,7 +47,7 @@ public class Phase2 {
     public static void main(String[] args) {
         /*PART 1:
         generate 10 random adjacency list graphs, then apply prim's algorithm 
-        with unordered priority queueon each graph and record the time it takes */
+        with unordered priority queue on each graph and record the time it takes */
         
         // array that stores 10 pairs of m, n values for the 10 cases
         int [][] cases={{1000, 10000}, {1000, 15000}, {1000, 25000},
@@ -99,14 +101,43 @@ public class Phase2 {
         time=System.currentTimeMillis();
         prim1(g10);
         System.out.println(System.currentTimeMillis()-time); 
-//        LinkedList< LinkedList<Integer[]> > g=makeGraph(5, 5);
-//        for (int i=0; i<5; i++){
-//            System.out.println(i+":");
-//            for (int j=0; j<g.get(i).size(); j++){
-//                System.out.print(g.get(i).get(j)[0]+"-->"+g.get(i).get(j)[1]+"   ");
-//            }System.out.println("\n");}
+
         
+        /* PART2:
+           apply kruskal algorithm on the graphs and mesaure the time in ms */
         
+        System.out.println("Times for kruskal algorithm in ms\n");
+        
+        time=System.currentTimeMillis();
+        kruskal(g1);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g2);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g3);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g4);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g5);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g6);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g7);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g8);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g9);
+        System.out.println(System.currentTimeMillis()-time); 
+        time=System.currentTimeMillis();
+        kruskal(g10);
+        System.out.println(System.currentTimeMillis()-time);
         
         
     }
@@ -187,6 +218,58 @@ public class Phase2 {
     }
     
     
+    static Edge [] kruskal(LinkedList< LinkedList<Integer[]> > graph){
+        
+        //sort all edges in a priority queue
+        PriorityQueue<Edge> pq = sortEdges(graph);
+        
+        //to store the subset of the vertex
+        int [] subset=new int[graph.size()];
+        for (int i=0; i<graph.size(); i++)
+            subset[i]=i;
+        
+        int ecounter=0;     //edge counter
+        Edge [] et=new Edge[graph.size()-1];    //store edges of MST
+        
+        while (ecounter<graph.size()-1){
+            Edge edge=pq.poll();
+            
+            if (subset[edge.src] != subset[edge.des]){ //check that the vertices are not in the same subset
+                
+                et[ecounter]=edge;      //add the edge to the MST
+                ecounter++;
+                union(edge, subset);    //unionize the subsets of the src and des of the edge
+            }
+        }
+
+        return et;
+    }
+    
+    
+    //return a priority queue of all edges sorted in increasing order 
+    static PriorityQueue<Edge> sortEdges(LinkedList< LinkedList<Integer[]> > graph){
+        
+        PriorityQueue<Edge> pq= new PriorityQueue<Edge>(new Edge());
+        
+        for (int i=0; i< graph.size(); i++)
+            for (int j=0; j<graph.get(i).size(); j++)
+                pq.add(new Edge(i, graph.get(i).get(j)[0], graph.get(i).get(j)[1]));
+                
+        return pq;
+    }
+    
+    //unionize the subsets of the src and des of the edge
+    static void union(Edge edge, int subset []){
+        
+        int desSubset= subset[edge.des];    //the destination vertex subset
+        int srcSubset= subset[edge.src];    //the source vertex subset
+        
+        //combine the subset of the destination vertex to the subset of the source
+        for (int i=0; i<subset.length; i++)
+            if (subset[i] == desSubset)     //if the vertex is in the destination subset 
+                subset[i] = srcSubset;      //move it to the source subset
+    }
+    
 }
 
 //objects to store in unordered priority queue
@@ -198,4 +281,27 @@ class PQvertex{
         this.p = p;
         this.w = w;
     }
+}
+
+class Edge implements Comparator<Edge>{
+    int src, des, w;  //source, destination, weight
+
+    public Edge(int src, int des, int w) {
+        this.src = src;
+        this.des = des;
+        this.w = w;
+    }
+    
+    Edge(){}
+
+    //to sort edges in a priority queue for kruskal algorithm
+    @Override
+    public int compare(Edge o1, Edge o2) { 
+        if (o1.w > o2.w)
+            return 1;
+        else if (o1.w < o2.w)
+            return -1;
+        return 0;
+    }
+    
 }
