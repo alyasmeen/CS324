@@ -1,6 +1,7 @@
 
 package phase2;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Phase2 {
@@ -65,7 +66,39 @@ public class Phase2 {
         LinkedList< LinkedList<Integer[]> > g9=makeGraph(cases[8][0], cases[8][1]);
         LinkedList< LinkedList<Integer[]> > g10=makeGraph(cases[9][0], cases[9][1]);
             
+        System.out.println("Times for Prim's algorithm using\nunordered priority queue in ms\n");
+        long time;
         
+        time=System.currentTimeMillis();
+        prim1(g1);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g2);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g3);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g4);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g5);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g6);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g7);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g8);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g9);
+        System.out.println(System.currentTimeMillis()-time); 
+        time=System.currentTimeMillis();
+        prim1(g10);
+        System.out.println(System.currentTimeMillis()-time); 
 //        LinkedList< LinkedList<Integer[]> > g=makeGraph(5, 5);
 //        for (int i=0; i<5; i++){
 //            System.out.println(i+":");
@@ -78,4 +111,91 @@ public class Phase2 {
         
     }
     
+    public static PQvertex [] prim1(LinkedList< LinkedList<Integer[]> > graph){
+  
+        // priority queue to to implement fringe+unseen list, it store the vertex, its parent, and weight
+        ArrayList<PQvertex> pq = new ArrayList<>();
+  
+        // to store MST data
+        PQvertex vt[] = new PQvertex[graph.size()];
+  
+        // Initialize pq. Fringe+unseen list
+        for (int i = 0; i < graph.size(); i++) {
+            pq.add(new PQvertex(i, -1, Integer.MAX_VALUE)); //PQvertex(vertex, its parent, its weight)
+            vt[i]=null; //nothing in the MST initially
+        }
+  
+        //weight of root initially 0, to add it first to the MST
+        pq.get(0).w=0;
+  
+        // Prim's algorithm
+        for (int i = 0; i < graph.size() - 1; i++) {
+            
+            // Pick thd minimum weight vertex from the fringe list
+            int index = findMin_Prim1(pq, vt);      //index is its order in the PQ
+            int u=pq.get(index).v;            //u is the order in the graph (its name)
+  
+            // Add the picked vertex to the MST
+            vt[u] = pq.get(index);
+            
+            //delete it from the PQ
+            pq.remove(index);
+  
+            // update the PQ for all adjacent vertices
+            updatePQ_Prim1(u, pq, vt, graph);
+            
+        }
+        
+        return vt;
+    }//end of prim1
+    
+    static int findMin_Prim1(ArrayList<PQvertex> pq, PQvertex vt[]){
+        
+        int min = Integer.MAX_VALUE, min_index = -1;
+  
+        for (int i = 0; i < pq.size(); i++)
+            if (vt[i] == null && pq.get(i).w < min) {
+                min = pq.get(i).w;
+                min_index = i;
+            }
+  
+        return min_index;
+    }
+    
+    static void updatePQ_Prim1(int u, ArrayList<PQvertex> pq, PQvertex vt[], LinkedList< LinkedList<Integer[]> > graph){
+        // update the PQ for all adjacent vertices
+        for (int j = 0; j < graph.get(u).size(); j++){
+
+            // skip updating if the vertex is already in the MST
+            if (vt[graph.get(u).get(j)[0]] != null)
+                continue;
+
+
+            //find the index of j'th vertex in the PQ
+            int k=0;
+            for (k=0; k< pq.size(); k++)
+                if (pq.get(k).v == graph.get(u).get(j)[0])
+                    break;
+
+
+            // Update the weight in PQ only if edge (u,j) is smaller than (parent,j)
+            if (graph.get(u).get(j)[1] < pq.get(k).w) {
+                pq.get(k).p= u;                         //update parent
+                pq.get(k).w= graph.get(u).get(j)[1];    //update weight
+            }
+        }        
+    }
+    
+    
+}
+
+//objects to store in unordered priority queue
+class PQvertex{
+    int v,p,w; //vertex, parent, weight. 
+    
+    public PQvertex(int v, int p, int w) {
+        this.v = v;
+        this.p = p;
+        this.w = w;
+    }
 }
