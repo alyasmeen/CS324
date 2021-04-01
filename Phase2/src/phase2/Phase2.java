@@ -3,6 +3,7 @@ package phase2;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
@@ -104,7 +105,7 @@ public class Phase2 {
 
         
         /* PART2:
-           apply kruskal algorithm on the graphs and mesaure the time in ms */
+        apply Kruskal algorithm on the graphs and mesaure the time in ms */
         
         System.out.println("Times for kruskal algorithm in ms\n");
         
@@ -137,6 +138,42 @@ public class Phase2 {
         System.out.println(System.currentTimeMillis()-time); 
         time=System.currentTimeMillis();
         kruskal(g10);
+        System.out.println(System.currentTimeMillis()-time);
+
+        /* PART3:
+        apply Prim's algorithm using min heap on the graphs and mesaure the time in ms */
+        
+        System.out.println("Times for Prim's algorithm using min heap in ms\n");
+        
+        time=System.currentTimeMillis();
+        prim2(g1);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g2);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g3);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g4);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g5);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g6);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g7);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g8);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g9);
+        System.out.println(System.currentTimeMillis()-time); 
+        time=System.currentTimeMillis();
+        prim2(g10);
         System.out.println(System.currentTimeMillis()-time);
         
         
@@ -243,7 +280,7 @@ public class Phase2 {
         }
 
         return et;
-    }
+    }//end of Kruskal
     
     
     //return a priority queue of all edges sorted in increasing order 
@@ -270,7 +307,79 @@ public class Phase2 {
                 subset[i] = srcSubset;      //move it to the source subset
     }
     
+    
+    public static Edge [] prim2(LinkedList< LinkedList<Integer[]> > graph){
+  
+        // Min heap to store fringe+unseen list,
+        //it stores the vertex (des), its parent (src) , and weight (w)
+        PriorityQueue<Edge> minHeap = new PriorityQueue<>(new Edge());
+  
+        // to store MST edges
+        Edge vt[] = new Edge[graph.size()];
+  
+        // Initialize all min heap vertices as unseen
+        for (int i = 0; i < graph.size(); i++) {
+            minHeap.add(new Edge(-1, i, Integer.MAX_VALUE)); // (parent, vertex, weight) i.e (source, dest, w)
+            vt[i]=null; //nothing in the MST initially
+        }
+        
+        //weight of root initially 0, to add it first to the MST
+        minHeap.peek().w=0;
+  
+        // Prim's algorithm
+        for (int i = 0; i < graph.size() - 1; i++) {
+            
+            // Pick thd minimum weight vertex from the fringe list
+            Edge edge= minHeap.poll();
+  
+            // Add the picked vertex to the MST
+            vt[edge.des] = edge;
+  
+            // update the PQ for all adjacent vertices
+            updateHeap(edge, minHeap, vt, graph);
+            
+        }
+        
+        return vt;
+    }//end of prim2
+    
+    
+    static void updateHeap(Edge edge, PriorityQueue<Edge> minHeap, Edge vt[], LinkedList< LinkedList<Integer[]> > graph){
+        //edge is the newly added edge to the MST
+        
+        // update the min heap for all adjacent vertices
+        for (int i = 0; i < graph.get(edge.des).size(); i++){
+
+            // skip updating if the vertex is already in the MST
+            if (vt[graph.get(edge.des).get(i)[0]] != null)
+                continue;
+
+
+            //find the i'th vertex in the min heap
+            Edge adjEdge=new Edge();
+            Iterator iter = minHeap.iterator();
+            
+            while (iter.hasNext()){
+                adjEdge=(Edge)iter.next();
+                
+                if (adjEdge.des == graph.get(edge.des).get(i)[0])
+                    break;      //adjacent i'th edge was found in the min heap
+            }
+
+            
+            // Update the weight in the min heap if the new edge is smaller
+            /* NOTE that if we need to update a value in a min heap we must
+            remove it and insert it again to maintain the heap property */
+            if (graph.get(edge.des).get(i)[1] < adjEdge.w) {
+                minHeap.remove(adjEdge);
+                adjEdge.src=edge.des;                           //update parent
+                adjEdge.w = graph.get(edge.des).get(i)[1];      //update weight
+                minHeap.add(adjEdge);                 
+            }
+        }
+    }// end of updateHeap    
 }
+
 
 //objects to store in unordered priority queue
 class PQvertex{
@@ -284,7 +393,7 @@ class PQvertex{
 }
 
 class Edge implements Comparator<Edge>{
-    int src, des, w;  //source, destination, weight
+    int src, des, w;  //source (parent), destination (vertex), weight
 
     public Edge(int src, int des, int w) {
         this.src = src;
