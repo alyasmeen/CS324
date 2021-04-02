@@ -68,114 +68,120 @@ public class Phase2 {
         LinkedList< LinkedList<Integer[]> > g8=makeGraph(cases[7][0], cases[7][1]);
         LinkedList< LinkedList<Integer[]> > g9=makeGraph(cases[8][0], cases[8][1]);
         LinkedList< LinkedList<Integer[]> > g10=makeGraph(cases[9][0], cases[9][1]);
-            
-        System.out.println("Times for Prim's algorithm using\nunordered priority queue in ms\n");
-        long time;
-        
-        time=System.currentTimeMillis();
-        prim1(g1);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim1(g2);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim1(g3);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim1(g4);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim1(g5);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim1(g6);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim1(g7);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim1(g8);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim1(g9);
-        System.out.println(System.currentTimeMillis()-time); 
-        time=System.currentTimeMillis();
-        prim1(g10);
-        System.out.println(System.currentTimeMillis()-time); 
+//            
+//        System.out.println("Times for Prim's algorithm using\nunordered priority queue in ms\n");
+//        long time;
+//        
+//        time=System.currentTimeMillis();
+//        prim1(g1);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim1(g2);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim1(g3);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim1(g4);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim1(g5);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim1(g6);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim1(g7);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim1(g8);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim1(g9);
+//        System.out.println(System.currentTimeMillis()-time); 
+//        time=System.currentTimeMillis();
+//        prim1(g10);
+//        System.out.println(System.currentTimeMillis()-time); 
+//        System.out.println();
+//
+//        
+//        /* PART2:
+//        apply Kruskal algorithm on the graphs and mesaure the time in ms */
+//        
+//        System.out.println("Times for kruskal algorithm in ms\n");
+//        
+//        time=System.currentTimeMillis();
+//        kruskal(g1);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        kruskal(g2);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        kruskal(g3);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        kruskal(g4);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        kruskal(g5);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        kruskal(g6);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        kruskal(g7);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        kruskal(g8);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        kruskal(g9);
+//        System.out.println(System.currentTimeMillis()-time); 
+//        time=System.currentTimeMillis();
+//        kruskal(g10);
+//        System.out.println(System.currentTimeMillis()-time);
+//        System.out.println();
+//
+//        /* PART3:
+//        apply Prim's algorithm using min heap on the graphs and mesaure the time in ms */
+//        
+//        System.out.println("Times for Prim's algorithm using min heap in ms\n");
+//        
+//        time=System.currentTimeMillis();
+//        prim2(g1);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim2(g2);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim2(g3);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim2(g4);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim2(g5);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim2(g6);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim2(g7);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim2(g8);
+//        System.out.println(System.currentTimeMillis()-time);
+//        time=System.currentTimeMillis();
+//        prim2(g9);
+//        System.out.println(System.currentTimeMillis()-time); 
+//        time=System.currentTimeMillis();
+//        prim2(g10);
+//        System.out.println(System.currentTimeMillis()-time);
+//        System.out.println();
 
-        
-        /* PART2:
-        apply Kruskal algorithm on the graphs and mesaure the time in ms */
-        
-        System.out.println("Times for kruskal algorithm in ms\n");
-        
-        time=System.currentTimeMillis();
-        kruskal(g1);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        kruskal(g2);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        kruskal(g3);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        kruskal(g4);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        kruskal(g5);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        kruskal(g6);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        kruskal(g7);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        kruskal(g8);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        kruskal(g9);
-        System.out.println(System.currentTimeMillis()-time); 
-        time=System.currentTimeMillis();
-        kruskal(g10);
-        System.out.println(System.currentTimeMillis()-time);
-
-        /* PART3:
-        apply Prim's algorithm using min heap on the graphs and mesaure the time in ms */
-        
-        System.out.println("Times for Prim's algorithm using min heap in ms\n");
-        
-        time=System.currentTimeMillis();
-        prim2(g1);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim2(g2);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim2(g3);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim2(g4);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim2(g5);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim2(g6);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim2(g7);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim2(g8);
-        System.out.println(System.currentTimeMillis()-time);
-        time=System.currentTimeMillis();
-        prim2(g9);
-        System.out.println(System.currentTimeMillis()-time); 
-        time=System.currentTimeMillis();
-        prim2(g10);
-        System.out.println(System.currentTimeMillis()-time);
-        
+        /* PART4:
+        Djkstra's algorithm */
+        dijkstra();
         
     }
     
@@ -197,7 +203,7 @@ public class Phase2 {
         pq.get(0).w=0;
   
         // Prim's algorithm
-        for (int i = 0; i < graph.size() - 1; i++) {
+        for (int i = 0; i < graph.size(); i++) {
             
             // Pick thd minimum weight vertex from the fringe list
             int index = findMin_Prim1(pq, vt);      //index is its order in the PQ
@@ -327,7 +333,7 @@ public class Phase2 {
         minHeap.peek().w=0;
   
         // Prim's algorithm
-        for (int i = 0; i < graph.size() - 1; i++) {
+        for (int i = 0; i < graph.size(); i++) {
             
             // Pick thd minimum weight vertex from the fringe list
             Edge edge= minHeap.poll();
@@ -378,6 +384,87 @@ public class Phase2 {
             }
         }
     }// end of updateHeap    
+    
+    
+    //find the shortest distance and the path from Jeddah to all other cities
+    static void dijkstra(){
+        
+        String [] cities={"Jeddah", "Makkah", "Madinah", "Riyadh", "Dammam", "Taif", 
+                          "Abha", "Tabuk", "Qasim", "Hail", "Jizan", "Najran"};
+        
+        int [][] graph={{0, 79, 420, 949, 1343, 167, 625, 1024, 863, 777, 710, 905},
+                        {79, 0, 358, 870, 1265, 88, 627, 1037, 876, 790, 685, 912},
+                        {420, 358, 0, 848, 1343, 446, 985, 679, 518, 432, 1043, 1270},
+                        {949, 870, 848, 0, 395, 782, 1064, 1304, 330, 640, 1272, 950},
+                        {1343, 1265, 1343, 395, 0, 1177, 1495, 1729, 725, 1035, 1667, 1345},
+                        {167, 88, 446, 782, 1177, 0, 561, 1204, 936, 957, 763, 864},
+                        {625, 627, 985, 1064, 1459, 561, 0, 1649, 1488, 1402, 202, 280},
+                        {1024, 1037, 679, 1304, 1729, 1204, 1649, 0, 974, 664, 1722, 1929},
+                        {863, 876, 518, 330, 725, 936, 1488, 974, 0, 310, 1561, 1280},
+                        {777, 790, 432, 640, 1035, 957, 1402, 664, 974, 0, 1475, 1590},
+                        {710, 685, 1043, 1272, 1667, 763, 202, 1722, 1561, 1475, 0, 482},
+                        {905, 912, 1270, 950, 1345, 864, 280, 1929, 1280, 1590, 482, 0}};
+        
+        // unordered priority queue to store fringe+unseen list, it stores the vertex, its parent, and distance
+        PQvertex pq[] = new PQvertex[graph.length];
+  
+        // tree vertices, shortest paths data
+        PQvertex vt[] = new PQvertex[graph.length];
+  
+        // Initialize pq, Fringe+unseen vertices
+        for (int i = 0; i < graph.length; i++) {
+            pq[i]=new PQvertex(i, -1, Integer.MAX_VALUE); //PQvertex(vertex, its parent, its distance)
+            vt[i]=null;
+        }
+  
+        //initialize shortest distance (w) of the source
+        pq[0].w=0;
+  
+        // Dijkstra's algorithm
+        for (int i = 0; i < graph.length; i++) {
+            
+            // find thd minimum vertex from the pq
+            int u=0;
+            int minDistance=Integer.MAX_VALUE;
+            
+            for (int j=0; j<graph.length; j++)
+                if (pq[i]!=null && pq[i].w < minDistance){
+                    u=i;
+                    minDistance=pq[i].w;
+                }
+            
+            // Add it to the tree of shortest distance
+            vt[u] = pq[u];
+            
+            //delete it from the PQ
+            pq[u]=null;
+  
+            // update the PQ for all adjacent vertices
+            for (int j=0; j< graph[u].length; j++){
+                
+                if (pq[j]!= null && vt[u].w + graph[u][j] < pq[j].w){ //pq[j]!=null (it is not added yet to the tree)
+                    pq[j].w = vt[u].w + graph[u][j];    //update distance
+                    pq[j].p=u;                          //update parent
+                }
+            }
+        }
+        
+        //print the solution
+        System.out.println("The shortest distance and path\nfrom Jeddah to every other city\nusing Dijkstra's algorithm\n");
+        for (int j=0; j<cities.length;j++){
+            System.out.println(path(j, cities, vt)+"\t"+vt[j].w);
+        }
+        
+        
+    }//end of dijkstra
+    
+    static String path(int j, String [] cities, PQvertex [] vt){
+        if (j==-1) //if source city
+            return "";
+
+        //return path of parent city + city
+        return path(vt[j].p,cities,vt) + "-"+cities[j];
+    }
 }
 
 
