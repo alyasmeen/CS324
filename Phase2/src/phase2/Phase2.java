@@ -68,116 +68,121 @@ public class Phase2 {
         LinkedList< LinkedList<Integer[]> > g8=makeGraph(cases[7][0], cases[7][1]);
         LinkedList< LinkedList<Integer[]> > g9=makeGraph(cases[8][0], cases[8][1]);
         LinkedList< LinkedList<Integer[]> > g10=makeGraph(cases[9][0], cases[9][1]);
-//            
-//        System.out.println("Times for Prim's algorithm using\nunordered priority queue in ms\n");
-//        long time;
-//        
-//        time=System.currentTimeMillis();
-//        prim1(g1);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim1(g2);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim1(g3);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim1(g4);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim1(g5);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim1(g6);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim1(g7);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim1(g8);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim1(g9);
-//        System.out.println(System.currentTimeMillis()-time); 
-//        time=System.currentTimeMillis();
-//        prim1(g10);
-//        System.out.println(System.currentTimeMillis()-time); 
-//        System.out.println();
-//
-//        
-//        /* PART2:
-//        apply Kruskal algorithm on the graphs and mesaure the time in ms */
-//        
-//        System.out.println("Times for kruskal algorithm in ms\n");
-//        
-//        time=System.currentTimeMillis();
-//        kruskal(g1);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        kruskal(g2);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        kruskal(g3);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        kruskal(g4);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        kruskal(g5);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        kruskal(g6);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        kruskal(g7);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        kruskal(g8);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        kruskal(g9);
-//        System.out.println(System.currentTimeMillis()-time); 
-//        time=System.currentTimeMillis();
-//        kruskal(g10);
-//        System.out.println(System.currentTimeMillis()-time);
-//        System.out.println();
-//
-//        /* PART3:
-//        apply Prim's algorithm using min heap on the graphs and mesaure the time in ms */
-//        
-//        System.out.println("Times for Prim's algorithm using min heap in ms\n");
-//        
-//        time=System.currentTimeMillis();
-//        prim2(g1);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim2(g2);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim2(g3);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim2(g4);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim2(g5);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim2(g6);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim2(g7);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim2(g8);
-//        System.out.println(System.currentTimeMillis()-time);
-//        time=System.currentTimeMillis();
-//        prim2(g9);
-//        System.out.println(System.currentTimeMillis()-time); 
-//        time=System.currentTimeMillis();
-//        prim2(g10);
-//        System.out.println(System.currentTimeMillis()-time);
-//        System.out.println();
+        
+        System.out.println("Apply the following three algorithms\non ten random graphs with the\nfollowing number of vertices and\nedges respectively");
+        for (int i=0; i<cases.length; i++)
+            System.out.println(cases[i][0]+","+cases[i][1]);
+        System.out.println("");
+        
+        System.out.println("Times for Prim's algorithm using\nunordered priority queue in ms\n");
+        long time;
+        
+        time=System.currentTimeMillis();
+        prim1(g1);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g2);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g3);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g4);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g5);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g6);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g7);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g8);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim1(g9);
+        System.out.println(System.currentTimeMillis()-time); 
+        time=System.currentTimeMillis();
+        prim1(g10);
+        System.out.println(System.currentTimeMillis()-time); 
+        System.out.println();
+
+        
+        /* PART2:
+        apply Kruskal algorithm on the graphs and mesaure the time in ms */
+        
+        System.out.println("Times for kruskal algorithm in ms\n");
+        
+        time=System.currentTimeMillis();
+        kruskal(g1);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g2);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g3);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g4);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g5);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g6);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g7);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g8);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        kruskal(g9);
+        System.out.println(System.currentTimeMillis()-time); 
+        time=System.currentTimeMillis();
+        kruskal(g10);
+        System.out.println(System.currentTimeMillis()-time);
+        System.out.println();
+
+        /* PART3:
+        apply Prim's algorithm using min heap on the graphs and mesaure the time in ms */
+        
+        System.out.println("Times for Prim's algorithm using min heap in ms\n");
+        
+        time=System.currentTimeMillis();
+        prim2(g1);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g2);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g3);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g4);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g5);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g6);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g7);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g8);
+        System.out.println(System.currentTimeMillis()-time);
+        time=System.currentTimeMillis();
+        prim2(g9);
+        System.out.println(System.currentTimeMillis()-time); 
+        time=System.currentTimeMillis();
+        prim2(g10);
+        System.out.println(System.currentTimeMillis()-time);
+        System.out.println();
 
         /* PART4:
         Djkstra's algorithm */
@@ -203,7 +208,7 @@ public class Phase2 {
         pq.get(0).w=0;
   
         // Prim's algorithm
-        for (int i = 0; i < graph.size(); i++) {
+        for (int i = 0; i < graph.size()-1; i++) {
             
             // Pick thd minimum weight vertex from the fringe list
             int index = findMin_Prim1(pq, vt);      //index is its order in the PQ
@@ -333,7 +338,7 @@ public class Phase2 {
         minHeap.peek().w=0;
   
         // Prim's algorithm
-        for (int i = 0; i < graph.size(); i++) {
+        for (int i = 0; i < graph.size()-1; i++) {
             
             // Pick thd minimum weight vertex from the fringe list
             Edge edge= minHeap.poll();
