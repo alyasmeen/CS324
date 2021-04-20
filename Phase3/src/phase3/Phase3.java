@@ -2,8 +2,16 @@
 package phase3;
 
 import java.util.LinkedList;
-
-class Phase3 {
+/**
+ * This program finds the maximum flow for a graph using
+ * Ford-Fulkerson algorithm and the maximum matching for 
+ * a bipartite graph with equal number of vertices in V and U
+ * 
+ * @author A.
+ * @version 1.0
+ * @since 2021
+ */
+public class Phase3 {
     //set up for the maximum flow problem
     static int V=6; //number of vertices
     static int residual[][] = new int[V][V]; //store residual graph
@@ -11,6 +19,11 @@ class Phase3 {
 
     
     
+    /**
+     * The main method define two graphs and call the two algorithms and prints
+     * the output
+     * @param args 
+     */
     public static void main(String[] args){
         //Graph of the maximum flow problem
         int graph[][]={{ 0, 2, 7, 0, 0, 0 },
@@ -45,7 +58,13 @@ class Phase3 {
     }
     
     
-    //Returns the maximum flow
+    /**
+     * Applies Ford-Fulkerson algorithm to find the maximum flow and prints the augmenting paths
+     * @param graph a directed weighted graph
+     * @param s source vertex
+     * @param t sink vertex
+     * @return The maximum flow
+     */
     public static int fordFulkerson(int graph[][], int s, int t){
         int u, v; //counter variables
         
@@ -95,9 +114,15 @@ class Phase3 {
         return maxFlow;
     }
     
-    /* Returns true if there exists an augmented path in the residual
-    graph and stores its information in "parent" */
-    static boolean bfs(int s, int t, int parent[]){
+
+    /**
+     * A helper for {@link #fordFulkerson(int [][], int, int)} to find augmenting paths
+     * @param s source vertex
+     * @param t sink vertex
+     * @param parent Stores the parent of a vertex while traversing a path
+     * @return True if there exists an augmented path in the residual graph. Otherwise false
+     */
+    public static boolean bfs(int s, int t, int parent[]){
         
         boolean visited[] = new boolean[V];
         for (int i = 0; i < V; ++i)
@@ -133,9 +158,12 @@ class Phase3 {
     } 
  
 
-    
-    //prints the min cut edges and its value using the residual graph
-    static void minCut(int [][] graph, int s){
+    /**
+     * prints the min cut edges and its value using the residual graph
+     * @param graph The original graph of the problem
+     * @param s source vertex
+     */
+    public static void minCut(int [][] graph, int s){
           
         boolean[] reached = new boolean[graph.length]; 
         
@@ -161,8 +189,13 @@ class Phase3 {
     }
     
     
-    //dfs to find the vertices that can be reached from the source in the residual graph
-    static void dfs(int s, boolean[] visited) {
+    /**
+     * A helper for  {@link #minCut(int [][], int)} to find the vertices that can
+     * be reached in the residual graph from the source 
+     * @param s source vertex
+     * @param visited  To store whether a vertex has been visited or not. Initially false
+     */
+    public static void dfs(int s, boolean[] visited) {
         visited[s] = true;
         for (int i = 0; i < residual.length; i++) {
                 if (residual[s][i] > 0 && !visited[i]) {
@@ -171,10 +204,15 @@ class Phase3 {
         }
     }
     
-    //finds the maximum matching and print it, it returns the number of matchings
-    static int maximumMatching(int [][] graph){
+    
+    /**
+     * finds the maximum matching and print it, and returns the number of matchings
+     * @param graph A bipartite graph
+     * @return number of the maximum matching
+     */
+    public static int maximumMatching(int [][] graph){
         int len=graph.length;
-        int n=len/2; //to iterate over the set V
+        int n=len/2; //number of vertices in V
         
         int matching []=new int[len]; //matching[u]=v means vertex u is matched with v
         int label []=new int[len];
